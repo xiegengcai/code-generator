@@ -11,25 +11,29 @@
 		-->
 		<#list table.columns as column>
 			<#if column.pk>
-		<id column="${column.sqlName}" jdbcType="${column.sqlType}" property="${column.columnNameLower}" />
+		<id column="${column.sqlName}" jdbcType="${column.sqlTypeName?replace(' UNSIGNED','')}" property="${column.columnNameLower}" />
 			<#else>
-		<result column="${column.sqlName}" jdbcType="${column.sqlType}" property="${column.columnNameLower}" />
+		<result column="${column.sqlName}" jdbcType="${column.sqlTypeName}" property="${column.columnNameLower}" />
 			</#if>
 		</#list>
 	</resultMap>
 
 	<select id="selectList" parameterType="${basepackage}.${subpackage}.entity.${className}" resultType="${classNameLower}">
-	SELECT
-	<#list table.columns as column>
-	<#if column_index!=0>, </#if>${column.sqlName} as ${column.columnNameLower}
-	</#list>
-	FROM ${table.sqlName}
+		SELECT
+		<#list table.columns as column>
+		<#if column_index!=0>, </#if>${column.sqlName} as ${column.columnNameLower}
+		</#list>
+		FROM ${table.sqlName}
 		<where>
 		<#list table.columns as column>
 		<#assign placeholder = "${prefix+column.columnNameLower+suffix}">
-		<#if column.str><if test="${column.columnNameLower} !=null and ${column.columnNameLower} != '' "><#else><if test="${column.columnNameLower} !=null"></#if>
-			AND ${column.sqlName} <#if column.str>LIKE "%"${placeholder}"%"<#else> = ${placeholder}</#if>
-		</if>
+		<#if column.str>
+			<if test="${column.columnNameLower} !=null and ${column.columnNameLower} != '' ">
+		<#else>
+			<if test="${column.columnNameLower} !=null">
+		</#if>
+				AND ${column.sqlName} <#if column.str>LIKE "%"${placeholder}"%"<#else> = ${placeholder}</#if>
+			</if>
 		</#list>
 		</where>
 	</select>

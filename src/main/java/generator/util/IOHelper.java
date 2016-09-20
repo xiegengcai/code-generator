@@ -29,12 +29,13 @@ public class IOHelper {
 	}
 	
 	public static void saveFile(File file,String content) throws Exception {
-		Writer writer = new FileWriter(file);
+		Writer writer = null;
 		if (encodeRemarksToUtf8) {
-			writer.write(URLEncoder.encode(content, encoder));
+			writer = new OutputStreamWriter(new FileOutputStream(file), encoder);
 		} else {
-			writer.write(content);
+			writer = new FileWriter(file);
 		}
+		writer.write(content);
 		writer.close();
 	}
 	

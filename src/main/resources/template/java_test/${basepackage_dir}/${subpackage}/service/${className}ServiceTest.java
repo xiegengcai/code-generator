@@ -84,7 +84,7 @@ public class ${className}ServiceTest extends BaseTest{
 
 	@Test
 	public void testSelectOne() {
-		Assert.notNull(service.selectOne(t));
+		Assert.notNull(service.selectOne(${classNameLower}));
 	}
 
 	@Test

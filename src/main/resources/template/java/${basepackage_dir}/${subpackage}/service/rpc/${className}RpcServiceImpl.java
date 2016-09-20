@@ -17,6 +17,6 @@ public class ${className}RpcServiceImpl extends BaseRpcService<${className}, ${c
 
     @Override
     protected ${className}Service getService() {
-        return this.${classNameLower}Mapper;
+        return this.${classNameLower}Service;
     }
 }

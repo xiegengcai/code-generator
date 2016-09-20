@@ -17,6 +17,8 @@
     template.dir=../template
     ## 生成代码输出目录
     outRoot=d:/temp
+    ## 拷贝文件进项目如果字段描述乱码，加入如下配置
+    encode.remarks2utf8=true
     ```
 1. 执行bin/starup.bat
 1. 将生成的文件拷贝到项目中

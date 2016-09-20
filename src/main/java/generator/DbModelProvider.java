@@ -5,8 +5,12 @@ import generator.model.Table;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import java.io.InputStream;
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.*;
+import java.util.Date;
+
 /**
  * 
  * @author badqiu
@@ -24,6 +28,35 @@ public class DbModelProvider {
 	
 	private Connection connection;
 	private static DbModelProvider instance = new DbModelProvider();
+	private final static Map<Integer, String> _jdbcSqlType = new HashMap<>();
+	static {
+		_jdbcSqlType.put(Types.TINYINT, "TINYINT");
+		_jdbcSqlType.put(Types.SMALLINT, "SMALLINT");
+		_jdbcSqlType.put(Types.INTEGER, "INTEGER");
+		_jdbcSqlType.put(Types.BIGINT, "BIGINT");
+		_jdbcSqlType.put(Types.REAL, "REAL");
+		_jdbcSqlType.put(Types.FLOAT, "FLOAT");
+		_jdbcSqlType.put(Types.DOUBLE, "DOUBLE");
+		_jdbcSqlType.put(Types.DECIMAL, "DECIMAL");
+		_jdbcSqlType.put(Types.NUMERIC, "NUMERIC");
+		_jdbcSqlType.put(Types.BIT, "BIT");
+		_jdbcSqlType.put(Types.CHAR, "CHAR");
+		_jdbcSqlType.put(Types.VARCHAR, "VARCHAR");
+		// according to resultset.gif, we should use java.io.Reader, but String is more convenient for EJB
+		_jdbcSqlType.put(Types.LONGVARCHAR, "LONGVARCHAR");
+		_jdbcSqlType.put(Types.BINARY, "BINARY");
+		_jdbcSqlType.put(Types.VARBINARY, "VARBINARY");
+		_jdbcSqlType.put(Types.LONGVARBINARY, "LONGVARBINARY");
+		_jdbcSqlType.put(Types.DATE, "DATE");
+		_jdbcSqlType.put(Types.TIME, "TIME");
+		_jdbcSqlType.put(Types.TIMESTAMP, "TIMESTAMP");
+		_jdbcSqlType.put(Types.CLOB, "CLOB");
+		_jdbcSqlType.put(Types.BLOB, "BLOB");
+		_jdbcSqlType.put(Types.ARRAY, "ARRAY");
+		_jdbcSqlType.put(Types.REF, "REF");
+		_jdbcSqlType.put(Types.STRUCT, "STRUCT");
+		_jdbcSqlType.put(Types.JAVA_OBJECT, "JAVA_OBJECT");
+	}
 	
 	private DbModelProvider() {
 		init();
@@ -272,7 +305,7 @@ public class DbModelProvider {
 	      ResultSet columnRs = getColumnsResultSet(table);
 	      while (columnRs.next()) {
 	         int sqlType = columnRs.getInt("DATA_TYPE");
-	         String sqlTypeName = columnRs.getString("TYPE_NAME");
+//	         String sqlTypeName = columnRs.getString("TYPE_NAME");
 	         String columnName = columnRs.getString("COLUMN_NAME");
 			  String remarks = columnRs.getString("REMARKS");
 	         String columnDefaultValue = columnRs.getString("COLUMN_DEF");
@@ -296,7 +329,7 @@ public class DbModelProvider {
 	         Column column = new Column(
 	               table,
 	               sqlType,
-	               sqlTypeName,
+	               _jdbcSqlType.get(sqlType),
 	               columnName,
 	               size,
 	               decimalDigits,
