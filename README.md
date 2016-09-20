@@ -4,6 +4,7 @@
 ##使用方法
 1. 下载并解压
 1. 修改conf目录下的配置
+    
     ```
     ## 基础包名。一般为公司域名
     basepackage=com.melinkr
