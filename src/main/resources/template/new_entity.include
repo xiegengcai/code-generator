@@ -1,0 +1,21 @@
+        ${className} t = new ${className}();
+		Date now = Date.from(Instant.now());
+		String randomStr = String.valueOf(random.nextInt(1000));
+<#list table.columns as column>
+    <#if column.isNotIdOrVersionField>
+        <#if column.longClass>
+            <#if column.javaType.simpleName =="Integer">
+        t.set${column.columnName}(Integer.parseInt(randomStr));
+            <#elseif column.javaType.simpleName =="String">
+        t.set${column.columnName}("test"+randomStr);
+            <#else>
+        t.set${column.columnName}(${column.javaType.simpleName}.parse${column.javaType.simpleName}(randomStr));
+            </#if>
+        <#elseif column.javaType.simpleName =="BigDecimal">
+        t.set${column.columnName}(new BigDecimal(1));
+        <#elseif column.isDateTimeColumn>
+        t.set${column.columnName}(now);
+        </#if>
+        // Add other
+    </#if>
+</#list>
