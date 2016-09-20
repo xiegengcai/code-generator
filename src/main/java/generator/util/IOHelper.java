@@ -1,12 +1,10 @@
 package generator.util;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Reader;
-import java.io.StringWriter;
-import java.io.Writer;
+import generator.PropertiesProvider;
+
+import java.io.*;
+import java.net.URLEncoder;
+
 /**
  * 
  * @author badqiu
@@ -14,6 +12,8 @@ import java.io.Writer;
  */
 public class IOHelper {
 
+	private static final boolean encodeRemarksToUtf8 = Boolean.valueOf(PropertiesProvider.getProperty("encode.remarks2utf8", "false"));
+	private static final String encoder = "UTF-8";
 	public static void copy(Reader in,Writer out) throws IOException {
 		int c = -1;
 		while((c = in.read()) != -1) {
@@ -28,9 +28,13 @@ public class IOHelper {
 		return out.toString();
 	}
 	
-	public static void saveFile(File file,String content) throws IOException {
+	public static void saveFile(File file,String content) throws Exception {
 		Writer writer = new FileWriter(file);
-		writer.write(content);
+		if (encodeRemarksToUtf8) {
+			writer.write(URLEncoder.encode(content, encoder));
+		} else {
+			writer.write(content);
+		}
 		writer.close();
 	}
 	

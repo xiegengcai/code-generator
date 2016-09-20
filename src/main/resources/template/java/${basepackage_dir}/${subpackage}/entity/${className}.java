@@ -14,10 +14,12 @@ public class ${className} implements java.io.Serializable {
 	//columns START
 	<#list table.columns as column>
 	<#if column.remarks??>
+<#if column.remarks!="">
 	/**
 	 * ${column.remarks}
 	 */
 	</#if>
+</#if>
 	<#if column.pk>
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -75,7 +75,7 @@ public class DbModelProvider {
 		throw new RuntimeException("not found table with give name:"+sqlTableName);
 	}
 
-	private Table createTable(Connection conn, ResultSet rs) throws SQLException {
+	private Table createTable(Connection conn, ResultSet rs) throws Exception {
 		ResultSetMetaData rsMetaData = rs.getMetaData();
 		String schemaName = rs.getString("TABLE_SCHEM") == null ? "" : rs.getString("TABLE_SCHEM");
 		String realTableName = rs.getString("TABLE_NAME");
@@ -94,7 +94,7 @@ public class DbModelProvider {
 		return table;
 	}
 	
-	public List getAllTables(Connection conn) throws SQLException {
+	public List getAllTables(Connection conn) throws Exception {
 		DatabaseMetaData dbMetaData = conn.getMetaData();
 		ResultSet rs = dbMetaData.getTables(catalog, schema, null, null);
 		List tables = new ArrayList();
@@ -200,7 +200,7 @@ public class DbModelProvider {
 		return getConnection().getMetaData();
 	}
 	
-	private void retriveTableColumns(Table table) throws SQLException {
+	private void retriveTableColumns(Table table) throws Exception {
 	      _log.debug("-------setColumns(" + table.getSqlName() + ")");
 
 	      List primaryKeys = getTablePrimaryKeys(table);
@@ -266,11 +266,10 @@ public class DbModelProvider {
 	      }
 	}
 
-	private List getTableColumns(Table table, List primaryKeys, List indices, Map uniqueIndices, Map uniqueColumns) throws SQLException {
+	private List getTableColumns(Table table, List primaryKeys, List indices, Map uniqueIndices, Map uniqueColumns) throws Exception {
 		// get the columns
 	      List columns = new LinkedList();
 	      ResultSet columnRs = getColumnsResultSet(table);
-	      
 	      while (columnRs.next()) {
 	         int sqlType = columnRs.getInt("DATA_TYPE");
 	         String sqlTypeName = columnRs.getString("TYPE_NAME");

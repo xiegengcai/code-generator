@@ -88,7 +88,7 @@ public class Generator {
 		}
 	}
 
-	private void generateFile(Table table, Configuration config, String templateRelativePath,String outputFilePath) throws IOException, IllegalAccessException, InvocationTargetException, NoSuchMethodException, TemplateException {
+	private void generateFile(Table table, Configuration config, String templateRelativePath,String outputFilePath) throws Exception {
 		Template template = config.getTemplate(templateRelativePath);
 		
 		String targetFilename = getTargetFilename(table, outputFilePath);
