@@ -12,7 +12,7 @@ import java.net.URLEncoder;
  */
 public class IOHelper {
 
-	private static final boolean encodeRemarksToUtf8 = Boolean.valueOf(PropertiesProvider.getProperty("encode.remarks2utf8", "false"));
+	private static final boolean encodeRemarksToUtf8 = Boolean.valueOf(PropertiesProvider.getProperty("file.encode2utf8", "false"));
 	private static final String encoder = "UTF-8";
 	public static void copy(Reader in,Writer out) throws IOException {
 		int c = -1;
