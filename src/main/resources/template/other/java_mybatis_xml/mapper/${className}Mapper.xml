@@ -11,7 +11,7 @@
 		-->
 		<#list table.columns as column>
 			<#if column.pk>
-		<id column="${column.sqlName}" jdbcType="${column.sqlTypeName?replace(' UNSIGNED','')}" property="${column.columnNameLower}" />
+		<id column="${column.sqlName}" jdbcType="${column.sqlTypeName}" property="${column.columnNameLower}" />
 			<#else>
 		<result column="${column.sqlName}" jdbcType="${column.sqlTypeName}" property="${column.columnNameLower}" />
 			</#if>
