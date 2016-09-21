@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 <#include "java_imports.include">
-@Component("${classNameLower}Serivce")
+@Component("${classNameLower}Service")
 public class ${className}ServiceImpl extends BaseService<${className}, ${className}Mapper> implements ${className}Service{
     @Autowired
     private ${className}Mapper ${classNameLower}Mapper;

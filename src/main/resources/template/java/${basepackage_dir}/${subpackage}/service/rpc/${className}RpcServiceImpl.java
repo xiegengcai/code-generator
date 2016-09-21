@@ -10,7 +10,7 @@ import ${basepackage}.${subpackage}.service.${className}Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 <#include "java_imports.include">
-@RpcService("${classNameLower}RpcSerivce")
+@RpcService("${classNameLower}RpcService")
 public class ${className}RpcServiceImpl extends BaseRpcService<${className}, ${className}Service> implements ${className}RpcService{
     @Autowired
     private ${className}Service ${classNameLower}Service;
