@@ -1,7 +1,7 @@
-#代码生成器
+# 代码生成器
 
-##基于[Rapid-Generator](https://code.google.com/archive/p/rapid-generator/)的代码生成器
-##使用方法
+## 基于[Rapid-Generator](https://code.google.com/archive/p/rapid-generator/)的代码生成器
+## 使用方法
 1. 下载并解压
 1. 修改conf目录下的配置
     
@@ -17,8 +17,6 @@
     template.dir=../template
     ## 生成代码输出目录
     outRoot=d:/temp
-    ## 拷贝文件进项目如果字段描述乱码，加入如下配置
-    encode.remarks2utf8=true
     ```
 1. 执行bin/starup.bat
 1. 将生成的文件拷贝到项目中
