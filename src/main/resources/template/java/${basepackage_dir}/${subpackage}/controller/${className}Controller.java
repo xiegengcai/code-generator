@@ -15,29 +15,29 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 <#include "java_imports.include">
-@Api(tags = "${table.comment}操作接口")
+@Api(tags = "${table.remarks}操作接口")
 @RestController
 public SysDepartmentController  ${className}Controller extends BaseController<${className}, ${className}Service>{
 	
-	@ApiOperation("按ID查询${table.comment}")
+	@ApiOperation("按ID查询${table.remarks}")
     @GetMapping("/${classNameLower}/{id}")
     public ${className} get(@PathVariable @ApiParam(value = "ID", required = true) int id) {
         return baseService.selectById(id);
     }
 
-    @ApiOperation("增加${table.comment}")
+    @ApiOperation("增加${table.remarks}")
     @PostMapping("/${classNameLower}")
     public void add(@RequestBody @Valid ${className} ${classNameLower}) {
         baseService.insert(${classNameLower});
     }
 
-    @ApiOperation("按ID删除${table.comment}")
+    @ApiOperation("按ID删除${table.remarks}")
     @DeleteMapping("/${classNameLower}/{id}")
     public void delete(@PathVariable @ApiParam(value = "ID", required = true) int id) {
         baseService.deleteById(id);
     }
 
-    @ApiOperation("更新${table.comment}")
+    @ApiOperation("更新${table.remarks}")
     @PutMapping("/${classNameLower}")
     public void edit(@RequestBody  @Valid ${className} ${classNameLower}) {
         baseService.updateById(${classNameLower});

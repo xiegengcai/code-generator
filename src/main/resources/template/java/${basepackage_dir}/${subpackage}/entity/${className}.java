@@ -12,7 +12,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 <#include "java_imports.include">
-@ApiModel(value = "${className}", description = "${table.comment}")
+@ApiModel(value = "${className}", description = "${table.remarks}")
 @Data
 @TableName("${table.sqlName}")
 public class ${className} implements java.io.Serializable {

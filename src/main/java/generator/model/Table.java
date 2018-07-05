@@ -16,7 +16,7 @@ public class Table {
 
 	String sqlName;
 	String className;
-	String comment;
+	String remarks;
 	/** the name of the owner of the synonym if this table is a synonym */
 	private String ownerSynonymName = null;
 	List columns = new ArrayList();
@@ -28,12 +28,12 @@ public class Table {
 		this.className = className;
 	}
 
-	public String getComment() {
-		return comment;
+	public String getRemarks() {
+		return remarks;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 
 	public List getColumns() {

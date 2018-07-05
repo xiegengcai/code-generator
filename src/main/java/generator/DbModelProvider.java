@@ -64,7 +64,7 @@ public class DbModelProvider {
 
 	private void init() {
 		
-		this.schema = PropertiesProvider.getProperty("jdbc.schema","");
+		this.schema = PropertiesProvider.getProperty("PropertiesProvider","");
 		if("".equals(schema.trim())) {
 			this.schema = null;
 		}
@@ -113,10 +113,10 @@ public class DbModelProvider {
 		String schemaName = rs.getString("TABLE_SCHEM") == null ? "" : rs.getString("TABLE_SCHEM");
 		String realTableName = rs.getString("TABLE_NAME");
 		String tableType = rs.getString("TABLE_TYPE");
-		String tableComment = rs.getString("TABLE_COMMENT");
+		String remarks = rs.getString("REMARKS");
 		Table table = new Table();
 		table.setSqlName(realTableName);
-		table.setComment(tableComment);
+		table.setRemarks(remarks);
 		if ("SYNONYM".equals(tableType) && isOracleDataBase()) {
 		    table.setOwnerSynonymName(getSynonymOwner(realTableName));
 		}
