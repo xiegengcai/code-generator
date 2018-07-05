@@ -2,20 +2,15 @@
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first> 
 package ${basepackage}.${subpackage}.service.impl;
+import ${basepackage}.${subpackage}.model.entity.${className};
+import ${basepackage}.${subpackage}.mapper.${className}Mapper;
+import ${basepackage}.${subpackage}.service.${className}Service;
 
-import com.melinkr.common.service.BaseService;
-import ${basepackage}.${subpackage}.entity.${className};
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.springframework.stereotype.Service;
 
 <#include "java_imports.include">
-@Component("${classNameLower}Service")
-public class ${className}ServiceImpl extends BaseService<${className}, ${className}Mapper> implements ${className}Service{
-    @Autowired
-    private ${className}Mapper ${classNameLower}Mapper;
-
-    @Override
-    protected ${className}Mapper getMapper() {
-        return this.${classNameLower}Mapper;
-    }
+@Service
+public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${className}> implements ${className}Service{
+    
 }

@@ -7,7 +7,7 @@
     
     ```
     ## 基础包名。一般为公司域名
-    basepackage=com.melinkr
+    basepackage=com.yourcompany
     ## 子包名。一般为项目模块名称
     subpackage=terminal
     hibernate_id_generator=uuid

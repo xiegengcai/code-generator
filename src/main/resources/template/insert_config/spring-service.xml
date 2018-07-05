@@ -1,5 +1,0 @@
-<#assign className = table.className>   
-<#assign classNameLower = className?uncap_first>
-
-<dubbo:service interface="${basepackage}.${subpackage}.service.rpc.${className}RpcService" ref="${classNameLower}RpcService" version="${"$"+"{dubbo.service.version}"}"/>
-<!-- webapp-generator-insert-location -->

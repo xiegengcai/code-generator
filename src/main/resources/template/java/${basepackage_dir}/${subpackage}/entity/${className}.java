@@ -2,13 +2,19 @@
 <#include "java_copyright.include">
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first> 
-package ${basepackage}.${subpackage}.model;
+package ${basepackage}.${subpackage}.model.entity;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import cn.leta.common.BaseModel;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.mapper.SqlCondition;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 <#include "java_imports.include">
-@Entity
-@Table(name = "${table.sqlName}")
+@ApiModel(value = "${className}", description = "${table.comment}")
+@Data
+@TableName("${table.sqlName}")
 public class ${className} implements java.io.Serializable {
 
 	//columns START
@@ -21,25 +27,12 @@ public class ${className} implements java.io.Serializable {
 	</#if>
 </#if>
 	<#if column.pk>
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	<#else>
-	@Column(name = "${column.sqlName}")
-	</#if>
+	@ApiModelProperty(value="${column.remarks}")
+    @TableField("${column.sqlName}")
 	private ${column.javaType.simpleName} ${column.columnNameLower};
+	</#if>
 	</#list>
 	//columns END
-
-	// getter/setter START
-	<#list table.columns as column>
-	public void set${column.columnName}(${column.javaType.simpleName} value) {
-		this.${column.columnNameLower} = value;
-	}
-
-	public ${column.javaType.simpleName} get${column.columnName}() {
-		return this.${column.columnNameLower};
-	}
-	</#list>
-	// getter/setter END
 }
 

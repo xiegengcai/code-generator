@@ -113,9 +113,10 @@ public class DbModelProvider {
 		String schemaName = rs.getString("TABLE_SCHEM") == null ? "" : rs.getString("TABLE_SCHEM");
 		String realTableName = rs.getString("TABLE_NAME");
 		String tableType = rs.getString("TABLE_TYPE");
-		
+		String tableComment = rs.getString("TABLE_COMMENT");
 		Table table = new Table();
 		table.setSqlName(realTableName);
+		table.setComment(tableComment);
 		if ("SYNONYM".equals(tableType) && isOracleDataBase()) {
 		    table.setOwnerSynonymName(getSynonymOwner(realTableName));
 		}

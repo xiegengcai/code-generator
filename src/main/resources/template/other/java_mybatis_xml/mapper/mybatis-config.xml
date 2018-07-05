@@ -1,5 +1,0 @@
-<#assign className = table.className>
-<#assign classNameLower = className?uncap_first>
-
-<typeAlias type="${basepackage}.${subpackage}.entity.${className}" alias="${classNameLower}"/>
-<!-- webapp-generator-insert-location -->

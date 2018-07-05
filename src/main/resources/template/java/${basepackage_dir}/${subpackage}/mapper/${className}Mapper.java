@@ -2,9 +2,9 @@
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first>   
 package ${basepackage}.${subpackage}.mapper;
-import com.melinkr.common.mapper.MelinkrMapper;
-import ${basepackage}.${subpackage}.entity.${className};
+import ${basepackage}.${subpackage}.model.entity.${className};
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 <#include "java_imports.include">
-public interface  ${className}Mapper extends MelinkrMapper<${className}>{
+public interface  ${className}Mapper extends BaseMapper<${className}>{
 
 }
