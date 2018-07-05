@@ -1,4 +1,3 @@
-<#include "java_copyright.include">
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first>   
 package ${basepackage}.${subpackage}.controller;
@@ -14,10 +13,13 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-<#include "java_imports.include">
+/**
+ * Template Created By Xie Gengcai
+ * Auto Generate By Code-Generator
+ */
 @Api(tags = "${table.remarks}操作接口")
 @RestController
-public SysDepartmentController  ${className}Controller extends BaseController<${className}, ${className}Service>{
+public class ${className}Controller extends BaseController<${className}, ${className}Service>{
 	
 	@ApiOperation("按ID查询${table.remarks}")
     @GetMapping("/${classNameLower}/{id}")

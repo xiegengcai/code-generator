@@ -1,5 +1,3 @@
-<#include "macro.include"/>
-<#include "java_copyright.include">
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first> 
 package ${basepackage}.${subpackage}.model.entity;
@@ -7,15 +5,24 @@ package ${basepackage}.${subpackage}.model.entity;
 import cn.leta.common.BaseModel;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
-import com.baomidou.mybatisplus.mapper.SqlCondition;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-<#include "java_imports.include">
+
+import java.util.Date;
+/**
+ * Template Created By Xie Gengcai
+ * Auto Generate By Code-Generator
+ */
+<#list table.columns as column>
+<#if column.pk>
+<#assign pkType = column.javaType.simpleName>   
+</#if>
+</#list>
 @ApiModel(value = "${className}", description = "${table.remarks}")
 @Data
 @TableName("${table.sqlName}")
-public class ${className} implements java.io.Serializable {
+public class ${className} extends BaseModel<${pkType}> {
 
 	//columns START
 	<#list table.columns as column>

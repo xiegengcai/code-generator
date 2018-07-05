@@ -18,9 +18,8 @@
     </resultMap>
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id AS id, parent_id AS parentId, `name`, description, status, `level`, sort_order AS sortOrder, create_date AS createDate, update_time AS updateTime
         <#list table.columns as column>
-        	${column.sqlName} AS ${column.columnNameLower}<#if column_index gt 0>, </#if>
+        	${column.sqlName} AS ${column.columnNameLower}<#if column_index != 0>, </#if>
 		</#list>
     </sql>
 
