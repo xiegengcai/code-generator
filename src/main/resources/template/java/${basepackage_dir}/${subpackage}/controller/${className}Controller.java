@@ -6,6 +6,7 @@ import cn.leta.common.utils.BeanUtil;
 import cn.leta.common.vo.LetaPage;
 import cn.leta.common.web.BaseController;
 import ${basepackage}.${subpackage}.model.entity.${className};
+import ${basepackage}.${subpackage}.model.dto.${className}DTO;
 import ${basepackage}.${subpackage}.service.${className}Service;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -23,14 +24,14 @@ public class ${className}Controller extends BaseController<${className}, ${class
 	
 	@ApiOperation("按ID查询${table.remarks}")
     @GetMapping("/${classNameLower}/{id}")
-    public ${className} get(@PathVariable @ApiParam(value = "ID", required = true) int id) {
-        return baseService.selectById(id);
+    public ${className}DTO get(@PathVariable @ApiParam(value = "ID", required = true) int id) {
+        return BeanUtil.copyProperties(baseService.selectById(id), new ${className}DTO());
     }
 
     @ApiOperation("增加${table.remarks}")
     @PostMapping("/${classNameLower}")
-    public void add(@RequestBody @Valid ${className} ${classNameLower}) {
-        baseService.insert(${classNameLower});
+    public void add(@RequestBody @Valid ${className}DTO ${classNameLower}) {
+        baseService.insert(BeanUtil.copyProperties(${classNameLower}, new ${className}()));
     }
 
     @ApiOperation("按ID删除${table.remarks}")
@@ -41,12 +42,12 @@ public class ${className}Controller extends BaseController<${className}, ${class
 
     @ApiOperation("更新${table.remarks}")
     @PutMapping("/${classNameLower}")
-    public void edit(@RequestBody  @Valid ${className} ${classNameLower}) {
-        baseService.updateById(${classNameLower});
+    public void edit(@RequestBody  @Valid ${className}DTO ${classNameLower}) {
+        baseService.updateById(BeanUtil.copyProperties(${classNameLower}, new ${className}()));
     }
     @ApiOperation("分页查询")
     @GetMapping("/${classNameLower}/query")
-    public LetaPage<${className}> query(@RequestBody LetaPage<${className}> letaPage) {
-        return BeanUtil.toLetaPage(baseService.selectPage(letaPage.toPage()));
+    public LetaPage<${className}DTO> query(@RequestBody LetaPage<${className}> letaPage) {
+        return BeanUtil.toLetaPage(baseService.selectPage(letaPage.toPage()), ${className}DTO.class);
     }
 }
