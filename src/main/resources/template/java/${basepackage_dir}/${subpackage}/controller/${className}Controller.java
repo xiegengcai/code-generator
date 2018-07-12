@@ -2,6 +2,8 @@
 <#assign classNameLower = className?uncap_first>   
 package ${basepackage}.${subpackage}.controller;
 
+import cn.leta.common.Errors;
+import cn.leta.common.exception.BizException;
 import cn.leta.common.utils.BeanUtil;
 import cn.leta.common.vo.LetaPage;
 import cn.leta.common.web.BaseController;
@@ -25,7 +27,11 @@ public class ${className}Controller extends BaseController<${className}, ${class
 	@ApiOperation("按ID查询${table.remarks}")
     @GetMapping("/${classNameLower}/{id}")
     public ${className}DTO get(@PathVariable @ApiParam(value = "ID", required = true) int id) {
-        return BeanUtil.copyProperties(baseService.selectById(id), new ${className}DTO());
+        ${className} ${classNameLower} = baseService.selectById(id);
+        if (${classNameLower} == null) {
+            throw new BizException(Errors.GLOBAL.DATA_NOT_EXISTED.getCode(), String.format("不存在id=%s的%s记录", id, ${className}.class));
+        }
+        return BeanUtil.copyProperties(${classNameLower}, new ${className}DTO());
     }
 
     @ApiOperation("增加${table.remarks}")
@@ -45,6 +51,7 @@ public class ${className}Controller extends BaseController<${className}, ${class
     public void edit(@RequestBody  @Valid ${className}DTO ${classNameLower}) {
         baseService.updateById(BeanUtil.copyProperties(${classNameLower}, new ${className}()));
     }
+    // 方法参数LetaPage<${className}>中的泛型仅做toPage()转换用
     @ApiOperation("分页查询")
     @GetMapping("/${classNameLower}/query")
     public LetaPage<${className}DTO> query(@RequestBody LetaPage<${className}> letaPage) {

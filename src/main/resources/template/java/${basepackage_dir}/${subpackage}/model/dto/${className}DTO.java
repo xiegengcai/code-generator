@@ -23,7 +23,12 @@ public class ${className}DTO implements Serializable{
 
 	//columns START
 	<#list table.columns as column>
-	@ApiModelProperty(value="${column.remarks}")
+	<#if column.remarks??>
+	<#assign propertyName = column.remarks>
+	<#else>
+	<#assign propertyName = column.columnNameLower>
+	</#if>
+	@ApiModelProperty(value="${propertyName}")
 	private ${column.javaType.simpleName} ${column.columnNameLower};
 	</#list>
 	//columns END
