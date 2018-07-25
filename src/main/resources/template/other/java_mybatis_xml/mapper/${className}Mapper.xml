@@ -19,7 +19,7 @@
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         <#list table.columns as column>
-        	${column.sqlName} AS ${column.columnNameLower}<#if column_index != 0>, </#if>
+        	<#if column_index gt 0>, </#if>${column.sqlName} AS ${column.columnNameLower}
 		</#list>
     </sql>
 
