@@ -38,6 +38,7 @@ public class ${className} implements Serializable{
     @TableField("${column.sqlName}")
 	</#if>
 	private ${column.javaType.simpleName} ${column.columnNameLower};
+	
 	</#list>
 	//columns END
 }

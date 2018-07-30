@@ -17,8 +17,8 @@ import java.util.Date;
 <#assign pkType = column.javaType.simpleName>   
 </#if>
 </#list>
-@ApiModel(value = "${className}", description = "${table.remarks}")
 @Data
+@ApiModel(value = "${className}", description = "${table.remarks}")
 public class ${className}DTO implements Serializable{
 
 	//columns START
@@ -30,6 +30,7 @@ public class ${className}DTO implements Serializable{
 	</#if>
 	@ApiModelProperty(value="${propertyName}")
 	private ${column.javaType.simpleName} ${column.columnNameLower};
+	
 	</#list>
 	//columns END
 }

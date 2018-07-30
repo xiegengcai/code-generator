@@ -38,14 +38,14 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${c
     @Override
     public boolean insert(${className} entity) {
     <#if hasUpdateTimeColumn>
-        Date now = DateUtils.now();
+        Date now = DateUtils.nowWithTime();
         // 设置创建时间
         entity.setCreateTime(now);
         // 设置更新时间
         entity.setUpdateTime(now);
     <#else>
         // 设置创建时间
-        entity.setCreateTime(DateUtils.now());
+        entity.setCreateTime(DateUtils.nowWithTime());
     </#if>
         return super.insert(entity);
     }
@@ -65,7 +65,7 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${c
     @Transactional(rollbackFor = {BizException.class, Exception.class})
     @Override
     public boolean updateById(${className} entity) {
-        entity.setUpdateTime(DateUtils.now());
+        entity.setUpdateTime(DateUtils.nowWithTime());
         return super.updateById(entity);
     }
     </#if>
