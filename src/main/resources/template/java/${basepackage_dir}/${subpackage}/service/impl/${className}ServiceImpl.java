@@ -4,7 +4,7 @@ package ${basepackage}.${subpackage}.service.impl;
 
 import cn.leta.common.exception.BizException;
 import cn.leta.common.utils.DateUtils;
-import ${basepackage}.${subpackage}.model.entity.${className};
+import ${basepackage}.${subpackage}.entity.${className};
 import ${basepackage}.${subpackage}.mapper.${className}Mapper;
 import ${basepackage}.${subpackage}.service.${className}Service;
 

@@ -7,7 +7,7 @@
 <mapper namespace="${basepackage}.${subpackage}.mapper.${className}Mapper">
 
     <!-- 属性映射 -->
-   <resultMap id="BaseResultMap" type="${basepackage}.${subpackage}.model.entity.${className}">
+   <resultMap id="BaseResultMap" type="${basepackage}.${subpackage}.entity.${className}">
         <#list table.columns as column>
 			<#if column.pk>
 		<id column="${column.sqlName}" jdbcType="${column.sqlTypeName}" property="${column.columnNameLower}" />

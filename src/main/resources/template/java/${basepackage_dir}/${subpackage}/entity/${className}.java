@@ -1,9 +1,11 @@
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first> 
-package ${basepackage}.${subpackage}.model.dto;
+package ${basepackage}.${subpackage}.entity;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -18,17 +20,23 @@ import java.util.Date;
 </#if>
 </#list>
 @Data
-@ApiModel(value = "${className}", description = "${table.remarks}")
-public class ${className}DTO implements Serializable{
+@TableName("${table.sqlName}")
+public class ${className} implements Serializable{
 
 	//columns START
 	<#list table.columns as column>
 	<#if column.remarks??>
-	<#assign propertyName = column.remarks>
-	<#else>
-	<#assign propertyName = column.columnNameLower>
+<#if column.remarks!="">
+	/**
+	 * ${column.remarks}
+	 */
 	</#if>
-	@ApiModelProperty(value="${propertyName}")
+</#if>
+	<#if column.pk>
+	@TableId(type = IdType.AUTO)
+	<#else>
+    @TableField("${column.sqlName}")
+	</#if>
 	private ${column.javaType.simpleName} ${column.columnNameLower};
 	
 	</#list>

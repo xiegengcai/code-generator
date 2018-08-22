@@ -1,7 +1,7 @@
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first> 
 package ${basepackage}.${subpackage}.service;
-import ${basepackage}.${subpackage}.model.entity.${className};
+import ${basepackage}.${subpackage}.entity.${className};
 import com.baomidou.mybatisplus.service.IService;
 /**
  * Template Created By Xie Gengcai
